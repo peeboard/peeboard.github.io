@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     siteName: "PeeBoard",
     type: "website",
     images: [{
-      url: "/app-icon-1024.png",
+      url: "/app-icon-1024.png?v=2",
       width: 1024,
       height: 1024,
       alt: "PeeBoard",
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PeeBoard",
     description: "PeeBoard - Tracking Lượt Nhận Xu Livestream Shopee",
-    images: ["/app-icon-1024.png"],
+    images: ["/app-icon-1024.png?v=2"],
   },
   manifest: "/manifest.webmanifest",
   icons: {
