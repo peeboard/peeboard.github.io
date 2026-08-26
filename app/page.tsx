@@ -149,16 +149,16 @@ const LIVESTREAM_EVENTS: LivestreamEvent[] = [
     sortTime: "2026-09-01T00:00:00",
     rewards: ["400", "800"],
   },
-  {
-    image: "/diep-le.jpeg",
-    title: "9.9 - NGÀY SIÊU MUA SẮM",
-    kols: ["Diệp Lê"],
-    dateTime: "11h 8/9/26",
-    sortTime: "2026-09-08T11:00:00",
-    rewards: ["400", "800"],
-    specialTime: "23h30 - 0h30 9/9/26",
-    specialRewards: ["1000", "5000"],
-  },
+  // {
+  //   image: "/diep-le.jpeg",
+  //   title: "9.9 - NGÀY SIÊU MUA SẮM",
+  //   kols: ["Diệp Lê"],
+  //   dateTime: "11h 8/9/26",
+  //   sortTime: "2026-09-08T11:00:00",
+  //   rewards: ["400", "800"],
+  //   specialTime: "23h30 - 0h30 9/9/26",
+  //   specialRewards: ["1000", "5000"],
+  // },
 ];
 
 const SORTED_LIVESTREAM_EVENTS = LIVESTREAM_EVENTS
