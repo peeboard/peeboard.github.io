@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "PeeBoard",
     short_name: "PeeBoard",
-    description: "Minimal livestream coin progress tracker",
+    description: "PeeBoard - Tracking Lượt Nhận Xu Livestream Shopee",
     start_url: "/",
     display: "standalone",
     background_color: "#ee4d2d",

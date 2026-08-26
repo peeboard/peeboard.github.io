@@ -4,10 +4,10 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://peeboard.github.io"),
   title: "PeeBoard",
-  description: "Minimal livestream coin progress tracker",
+  description: "PeeBoard - Tracking Lượt Nhận Xu Livestream Shopee",
   openGraph: {
     title: "PeeBoard",
-    description: "Minimal livestream coin progress tracker",
+    description: "PeeBoard - Tracking Lượt Nhận Xu Livestream Shopee",
     url: "https://peeboard.github.io",
     siteName: "PeeBoard",
     type: "website",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PeeBoard",
-    description: "Minimal livestream coin progress tracker",
+    description: "PeeBoard - Tracking Lượt Nhận Xu Livestream Shopee",
     images: ["/app-icon-1024.png"],
   },
   manifest: "/manifest.webmanifest",
