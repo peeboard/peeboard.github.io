@@ -2,8 +2,28 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://peeboard.github.io"),
   title: "PeeBoard",
   description: "Minimal livestream coin progress tracker",
+  openGraph: {
+    title: "PeeBoard",
+    description: "Minimal livestream coin progress tracker",
+    url: "https://peeboard.github.io",
+    siteName: "PeeBoard",
+    type: "website",
+    images: [{
+      url: "/app-icon-1024.png",
+      width: 1024,
+      height: 1024,
+      alt: "PeeBoard",
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PeeBoard",
+    description: "Minimal livestream coin progress tracker",
+    images: ["/app-icon-1024.png"],
+  },
   manifest: "/manifest.webmanifest",
   icons: {
     icon: [
