@@ -18,28 +18,34 @@ const DOT_STOPS = Array.from(
 
 const EARN_TIP_ITEMS = [
   {
+    title: "Chuyển Tiền Shopee Pay",
+    description: "Thực hiện chuyển tiền Ví Shopee Pay đến Ngân hàng bất kì, có thể chuyển thẳng hoặc quét QR. Cần chuyển từ 10.000đ / 1 lần để nhận thưởng.",
+    rewards: ["300", "50.000"],
+    note: "Dễ, may mắn có thể nhận được nhiều xu. Thời hạn sự kiện : 16/8 - 15/9",
+  },
+  {
     title: "Xem Livestream",
     description: "Mở các livestream để xem và nhận xu sau mỗi 5 đến 10 phút, chỉ nên nhận nếu có từ 400 xu trở lên. Tối đa 200 lượt mỗi tháng, có thể kiếm từ 30.000 - 200.000 mỗi tháng.",
     rewards: ["100", "5.000"],
-    note: "Dễ, tốn thời gian nhiều, kiếm được nhiều xu. Nên tận dụng tính năng PiP (Picture in Picture) để vừa xem vừa làm việc khác",
+    note: "Dễ, tốn thời gian, kiếm được nhiều xu nhất.",
   },
   {
     title: "Hoàn Xu Ngày Hội Thành Viên",
     description: "Hoàn thành đơn hàng vào ngày hội thành viên để nhận xu hoàn theo hạng thành viên. Bạc 3%, Vàng 4%, Kim Cương 5%.",
     rewards: ["100", "800.000"],
-    note: "Khó, phải mua đơn từ 400K, xu hoàn % theo hạng.",
+    note: "Khó, phải mua hàng, đơn hàng từ 400K, xu hoàn % theo hạng.",
   },
   {
     title: "Hoàn Xu Đơn Thời Trang",
     description: "Mua đơn hàng thời trang để được hoàn 10%, tối đa 100K xu 1 đơn. 500K xu mỗi ngày. Bắt buộc có Shopee VIP mới được tham gia",
     rewards: ["100", "500.000"],
-    note: "Khó, phải mua đơn thuộc Thời Trang, xu hoàn % cao.",
+    note: "Khó, phải mua hàng, đơn thuộc ngành hàng Thời Trang, xu hoàn % cao.",
   },
   {
     title: "Quay Vòng Quay Livestream",
     description: "Mở các livestream để xem và quay vòng quay. Tối đa 10 lượt mỗi ngày. Nên quay vòng nào có xu lớn để khó hụt.",
     rewards: ["100", "∞"],
-    note: "Trung bình, xu thưởng từ 100 - 300, tốn thời gian chờ, dễ bị hụt do số người đông",
+    note: "Trung bình, xu thưởng tuỳ theo vòng quay, có thể bị hụt nếu số người quay đông",
   },
   {
     title: "Điểm Danh Shopee & Shopee Pay",
@@ -49,7 +55,7 @@ const EARN_TIP_ITEMS = [
   },
   {
     title: "Trồng Cây",
-    description: "Mỗi ngày vào trồng cây, tưới nước, chéo ở các nhóm, làm nhiệm vụ trong nông trại để cây mau chín.",
+    description: "Mỗi ngày vào trồng cây, tưới nước, làm nhiệm vụ trong nông trại để cây mau chín.",
     rewards: ["100", "1000"],
     note: "Dễ, nhanh, ít xu",
   },
@@ -69,7 +75,7 @@ const EARN_TIP_ITEMS = [
     title: "Điểm Danh Nông Trại Tuần",
     description: "Tại trang chủ lướt tìm mục Xem Thêm, kéo xuống phần Ưu Đãi → Săn Ngay 100.000 xu → Kéo xuống mục Chơi 7 ngày liên tục nhận 300 xu. Bấm Thực Hiện để mở Nông Trại, tưới nước bằng bình dưới góc phải (bắt buộc) rồi trở lại. Bấm Thực Hiện một lần nữa vào Nông Trại rồi trở lại khi nào thấy số tăng lên mới điểm danh xong nhé, liên tục 7 ngày, hụt 1 ngày coi như mất.",
     rewards: ["300"],
-    note: "Trung bình, hơi rườm rà, ít xu, dễ hụt",
+    note: "Trung bình, hơi rườm rà, tốn thời gian, ít xu, dễ quên và hụt",
   },
   {
     title: "Tham Gia Game",
@@ -93,19 +99,19 @@ const EARN_TIP_ITEMS = [
     title: "Tham Gia Các Game Khác",
     description: "Tham gia các game: Nối Hình, Kéo Thả, Bắn Bóng, Thú Cưng, Đập Kẹo, Xếp Gạch",
     rewards: [],
-    note: "Khó, rườm rà, hên xui, xu thưởng tuỳ thời điểm",
+    note: "Trung bình, phải chơi game và hoàn thành, xu sẽ chia theo số người hoàn thành",
   },
   {
     title: "Nhiệm Vụ Shopee Pay",
     description: "Vào mục Nhận thường mỗi ngày của app Shopee Pay có các nhiệm vụ như thanh toán hoá đơn, hoàn tất giao dịch, mua thẻ điện thoại, vé xem phim ...",
     rewards: ["5000", "20000"],
-    note: "Khó, nhiệm vụ đa dạng và yêu cầu thanh toán đặc thù, xu nhiều",
+    note: "Khó, nhiệm vụ đa dạng và yêu cầu phải thanh toán đặc thù, xu nhiều",
   },
   {
     title: "Theo Dõi Shop",
     description: "Tại mục 1 Click Nhận Quà Ngay. Lướt xuống tìm mục Thử Thách Shopee",
-    rewards: ["200", "5000"],
-    note: "Khó nếu đã từng huỷ theo dõi các shop sau khi nhận xu dễ bị lọc nhiệm vụ này. Rất dễ nếu không bị lọc, chỉ cần theo dõi là lấy xu.",
+    rewards: ["200", "1000"],
+    note: "Rất dễ nếu không bị lọc, chỉ cần theo dõi là lấy xu. Nếu đã từng huỷ theo dõi các shop sau khi nhận xu dễ bị lọc nhiệm vụ này. ",
   },
   {
     title: "Đánh Giá Sản Phẩm",
@@ -117,7 +123,13 @@ const EARN_TIP_ITEMS = [
     title: "Chọn Số Trúng Xu",
     description: "Chọn một số hoặc random số may mắn. Có thể mời thêm bạn để tăng tỉ lệ chắc chắn vào một số.",
     rewards: [],
-    note: "Dễ, hên xui, chia kho xu trung bình",
+    note: "Dễ, hên xui, xu được chia tuỳ theo số lượng người trúng",
+  },
+  {
+    title: "Điểm Danh Livestream / Video / Phim Drama",
+    description: "Điểm danh hàng ngày và xem livestream, video, phim drama trong tab Live",
+    rewards: [],
+    note: "Dễ, chỉ cần xem, xu ít. May mắn có thể nhận được nhiều khi mở hộp quà mốc. Tuy nhiên nhiều người bị lọc không có nhiệm vụ này",
   },
 ];
 
@@ -173,6 +185,7 @@ const DIFFICULTY_ORDER: Record<string, number> = {
 };
 
 const PRIORITY_TIP_TITLES = [
+  "Chuyển Tiền Shopee Pay",
   "Xem Livestream",
   "Điểm Danh Shopee & Shopee Pay",
   "Nhiệm Vụ Hàng Ngày",
@@ -219,6 +232,12 @@ function TipIcon({ title }: { title: string }) {
   };
 
   switch (title) {
+    case "Chuyển Tiền Shopee Pay":
+      return (
+        <svg {...iconProps}>
+          <path d="M3 11h3.75a2 2 0 0 1 1.6.8l.45.6a4 4 0 0 0 6.4 0l.45-.6a2 2 0 0 1 1.6-.8H21"/><path d="M3 7h18"/><rect x="3" y="3" width="18" height="18" rx="2"/>
+        </svg>
+    );
     case "Xem Livestream":
       return (
         <svg {...iconProps}>
@@ -243,6 +262,11 @@ function TipIcon({ title }: { title: string }) {
         </svg>
       );
     case "Nhiệm Vụ Hàng Ngày":
+      return (
+        <svg {...iconProps}>
+          <path d="M 19 3 L 5 3"/><path d="M 21 13 L 21 5"/><path d="M 21 5 A2 2 0 0 0 19 3"/><path d="M 3 19 A2 2 0 0 0 5 21"/><path d="M 3 5 L 3 19"/><path d="M 5 3 A2 2 0 0 0 3 5"/><path d="m16 19 2 2 4-4"/><path d="M16 2v3"/><path d="M3 9h18"/><path d="M5 21 L12.5 21"/><path d="M8 2v3"/>
+        </svg>
+      )
     case "Hộp Quà Khách Hàng Thân Thiết":
       return (
         <svg {...iconProps}>
@@ -351,6 +375,12 @@ function TipIcon({ title }: { title: string }) {
           <path d="M2 21a8 8 0 0 1 13.292-6" />
           <circle cx="10" cy="8" r="5" />
           <path d="m16 19 2 2 4-4" />
+        </svg>
+      );
+    case "Điểm Danh Livestream / Video / Phim Drama":
+      return (
+        <svg {...iconProps}>
+         <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9.003a1 1 0 0 1 1.517-.859l4.997 2.997a1 1 0 0 1 0 1.718l-4.997 2.997A1 1 0 0 1 9 14.996z"/>
         </svg>
       );
     default:
