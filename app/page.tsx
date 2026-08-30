@@ -18,6 +18,12 @@ const DOT_STOPS = Array.from(
 
 const EARN_TIP_ITEMS = [
   {
+    title: "Hộp Quà Vũ Trụ Gen Z",
+    description: "Mở hộp quà sự kiện Vũ Trụ Gen Z. Tỉ lệ trúng cao hơn nếu có năm sinh thuộc độ tuổi từ 15 - 24 theo hồ sơ Shopee trước 15/5/2026",
+    rewards: ["0", "50.000", "100.000"],
+    note: "Dễ chơi, khó trúng, chỉ cần mở hộp may mắn với 1 lượt mỗi ngày có thể nhận được nhiều xu. Thời hạn sự kiện : 16/7 - 15/10",
+  },
+  {
     title: "Chuyển Tiền Shopee Pay",
     description: "Thực hiện chuyển tiền Ví Shopee Pay đến Ngân hàng bất kì, có thể chuyển thẳng hoặc quét QR. Cần chuyển từ 10.000đ / 1 lần để nhận thưởng.",
     rewards: ["300", "50.000"],
@@ -97,8 +103,8 @@ const EARN_TIP_ITEMS = [
   },
   {
     title: "Tham Gia Các Game Khác",
-    description: "Tham gia các game: Nối Hình, Kéo Thả, Bắn Bóng, Thú Cưng, Đập Kẹo, Xếp Gạch",
-    rewards: [],
+    description: "Tham gia các game : Nối Hình, Kéo Thả, Bắn Bóng, Thú Cưng, Đập Kẹo, Xếp Gạch",
+    rewards: ["100", "10.000", "Chia Kho Xu"],
     note: "Trung bình, phải chơi game và hoàn thành, xu sẽ chia theo số người hoàn thành",
   },
   {
@@ -111,7 +117,7 @@ const EARN_TIP_ITEMS = [
     title: "Theo Dõi Shop",
     description: "Tại mục 1 Click Nhận Quà Ngay. Lướt xuống tìm mục Thử Thách Shopee",
     rewards: ["200", "1000"],
-    note: "Rất dễ nếu không bị lọc, chỉ cần theo dõi là lấy xu. Nếu đã từng huỷ theo dõi các shop sau khi nhận xu dễ bị lọc nhiệm vụ này. ",
+    note: "Dễ, chỉ cần theo dõi là lấy xu. Nếu đã từng huỷ theo dõi các shop sau khi nhận xu sẽ bị lọc nhiệm vụ này.",
   },
   {
     title: "Đánh Giá Sản Phẩm",
@@ -156,21 +162,29 @@ const LIVESTREAM_EVENTS: LivestreamEvent[] = [
   {
     image: "/vo-tan-phat.jpg",
     title: "NGHỀ SIÊU DỄ - DEAL SIÊU HỜI",
-    kols: ["Võ Tấn Phát", "Sĩ Thanh", "Tâm An"],
+    kols: ["Võ Tấn Phát", "Sĩ Thanh"],
     dateTime: "0h 1/9/26",
     sortTime: "2026-09-01T00:00:00",
     rewards: ["400", "800"],
   },
-  // {
-  //   image: "/diep-le.jpeg",
-  //   title: "9.9 - NGÀY SIÊU MUA SẮM",
-  //   kols: ["Diệp Lê"],
-  //   dateTime: "11h 8/9/26",
-  //   sortTime: "2026-09-08T11:00:00",
-  //   rewards: ["400", "800"],
-  //   specialTime: "23h30 - 0h30 9/9/26",
-  //   specialRewards: ["1000", "5000"],
-  // },
+  {
+    image: "/bui-cong-nam.webp",
+    title: "SAO LIVE ĐỈNH CHÓP",
+    kols: ["Bùi Công Nam", "Đan Trường", "Văn Mai Hương"],
+    dateTime: "19h30 8/9/26",
+    sortTime: "2026-09-08T19:30:00",
+    rewards: ["500", "800"],
+    specialTime: "20h00 - 21h30 8/9/26",
+    specialRewards: ["1200", "1800"],
+  },
+  {
+    image: "/ngo-kien-huy.jpeg",
+    title: "TIỆM ĐÈN SÁNG - SĂN DEAL SANG",
+    kols: ["Ngô Kiến Huy"],
+    dateTime: "10h00 9/9/26",
+    sortTime: "2026-09-08T19:30:00",
+    rewards: ["500", "800"],
+  },
 ];
 
 const SORTED_LIVESTREAM_EVENTS = LIVESTREAM_EVENTS
@@ -185,6 +199,7 @@ const DIFFICULTY_ORDER: Record<string, number> = {
 };
 
 const PRIORITY_TIP_TITLES = [
+  "Hộp Quà Vũ Trụ Gen Z",
   "Chuyển Tiền Shopee Pay",
   "Xem Livestream",
   "Điểm Danh Shopee & Shopee Pay",
@@ -232,6 +247,12 @@ function TipIcon({ title }: { title: string }) {
   };
 
   switch (title) {
+    case "Hộp Quà Vũ Trụ Gen Z":
+      return (
+        <svg {...iconProps}>
+          <path d="M16.005 15.108a5.041 6.52 28.25 00-8.008-6.217 5.041 6.52 28.25 008.008 6.217A11.884 7.288-60.76 014.029 7.001" /><path d="M17 21h.01" /><path d="M7 3h.01" /><path d="M7.997 8.891a11.885 7.288-60.756 0111.977 8.107" /><circle cx="12" cy="12" r="1" fill="currentColor" />
+        </svg>
+    );
     case "Chuyển Tiền Shopee Pay":
       return (
         <svg {...iconProps}>
@@ -1134,6 +1155,12 @@ export default function Home() {
                                 <>
                                   <span aria-hidden="true">–</span>
                                   <span>{formatReward(item.rewards[1])}</span>
+                                </>
+                              )}
+                               {item.rewards.length > 2 && (
+                                <>
+                                  <span aria-hidden="true">–</span>
+                                  <span>{formatReward(item.rewards[2])}</span>
                                 </>
                               )}
                             </>
