@@ -88,16 +88,19 @@ export default function Home() {
     const savedCoins = Number(window.localStorage.getItem(COINS_STORAGE_KEY));
     const savedLastCoinChange = window.localStorage.getItem(LAST_COIN_CHANGE_STORAGE_KEY);
 
-    if (savedLastCoinChange && Number.isFinite(Date.parse(savedLastCoinChange))) {
-      setLastCoinChange(savedLastCoinChange);
-    }
-
     if (savedMonth !== currentMonth) {
       window.localStorage.setItem(MONTH_STORAGE_KEY, currentMonth);
       window.localStorage.setItem(COINS_STORAGE_KEY, "0");
+      window.localStorage.removeItem(LAST_COIN_CHANGE_STORAGE_KEY);
       setCoins(0);
-    } else if (Number.isFinite(savedCoins)) {
-      setCoins(Math.min(MAX_COINS, Math.max(0, savedCoins)));
+      setLastCoinChange(null);
+    } else {
+      if (Number.isFinite(savedCoins)) {
+        setCoins(Math.min(MAX_COINS, Math.max(0, savedCoins)));
+      }
+      if (savedLastCoinChange && Number.isFinite(Date.parse(savedLastCoinChange))) {
+        setLastCoinChange(savedLastCoinChange);
+      }
     }
 
     setStorageReady(true);
@@ -211,15 +214,13 @@ export default function Home() {
           </section>
         </div>
 
-        <div className="remaining-pill last-received-pill" aria-live="polite">
-          {lastCoinChange ? (
+        {lastCoinChange && coins < MAX_COINS && (
+          <div className="remaining-pill last-received-pill" aria-live="polite">
             <span>
               Lần nhận xu cuối lúc <time dateTime={lastCoinChange}>{formatLastCoinChange(lastCoinChange)}</time>
             </span>
-          ) : (
-            "Chưa nhận xu"
-          )}
-        </div>
+          </div>
+        )}
       </section>
     </main>
   );
