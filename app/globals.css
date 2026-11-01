@@ -40,36 +40,26 @@ button {
 }
 
 .app-shell {
-  background: var(--orange);
+  /* Paint the glows directly, without blur-filter layers that can leave WebKit repaint artifacts. */
+  background:
+    radial-gradient(
+      circle 125px at 18px calc(28% + 110px),
+      rgba(255, 213, 138, 0.22) 0%,
+      rgba(255, 213, 138, 0.22) 70%,
+      rgba(255, 213, 138, 0) 100%
+    ),
+    radial-gradient(
+      circle 145px at calc(100% - 30px) calc(51% + 130px),
+      rgba(255, 184, 77, 0.22) 0%,
+      rgba(255, 184, 77, 0.22) 74%,
+      rgba(255, 184, 77, 0) 100%
+    ),
+    var(--orange);
   height: 100dvh;
   min-height: 100dvh;
   overflow: hidden;
   position: relative;
   touch-action: pan-x pan-y;
-}
-
-.glow {
-  border-radius: 999px;
-  filter: blur(10px);
-  opacity: 0.22;
-  pointer-events: none;
-  position: absolute;
-}
-
-.glow-one {
-  background: #ffd58a;
-  height: 220px;
-  left: -92px;
-  top: 28%;
-  width: 220px;
-}
-
-.glow-two {
-  background: #ffb84d;
-  height: 260px;
-  right: -100px;
-  top: 51%;
-  width: 260px;
 }
 
 .hero {
@@ -184,13 +174,11 @@ button {
 
 @keyframes digit-out {
   from {
-    filter: blur(0);
     opacity: 1;
     transform: translateY(0);
   }
 
   to {
-    filter: blur(5px);
     opacity: 0;
     transform: translateY(-18px);
   }
@@ -198,13 +186,11 @@ button {
 
 @keyframes digit-in {
   from {
-    filter: blur(5px);
     opacity: 0;
     transform: translateY(18px);
   }
 
   to {
-    filter: blur(0);
     opacity: 1;
     transform: translateY(0);
   }

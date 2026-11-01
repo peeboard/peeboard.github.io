@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const MAX_COINS = 200;
+const MAX_COINS = 180;
 const COINS_STORAGE_KEY = "peeboard-coins";
 const MONTH_STORAGE_KEY = "peeboard-month";
 const DOT_STEP = 10;
@@ -134,9 +134,6 @@ export default function Home() {
 
   return (
     <main className="app-shell">
-      <div className="glow glow-one" />
-      <div className="glow glow-two" />
-
       <section className="hero" aria-label="Bảng tiến độ nhận xu">
         <div className="topbar">
           <div className="brand-mark" aria-label="PeeBoard">
