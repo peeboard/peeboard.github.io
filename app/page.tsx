@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const MAX_COINS = 180;
 const COINS_STORAGE_KEY = "peeboard-coins";
 const MONTH_STORAGE_KEY = "peeboard-month";
+const LAST_COIN_CHANGE_STORAGE_KEY = "peeboard-last-coin-change";
 const DOT_STEP = 10;
 const DOT_STOPS = Array.from(
   { length: MAX_COINS / DOT_STEP },
@@ -24,6 +25,12 @@ function getMonthLabel(monthOffset = 0) {
   date.setDate(1);
   date.setMonth(date.getMonth() + monthOffset);
   return `${String(date.getMonth() + 1).padStart(2, "0")}/${date.getFullYear()}`;
+}
+
+function formatLastCoinChange(timestamp: string) {
+  const date = new Date(timestamp);
+  const pad = (value: number) => String(value).padStart(2, "0");
+  return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
 }
 
 function AnimatedDigit({ value }: { value: string }) {
@@ -72,12 +79,18 @@ function AnimatedDigit({ value }: { value: string }) {
 
 export default function Home() {
   const [coins, setCoins] = useState(0);
+  const [lastCoinChange, setLastCoinChange] = useState<string | null>(null);
   const [storageReady, setStorageReady] = useState(false);
 
   useEffect(() => {
     const currentMonth = getCurrentMonthKey();
     const savedMonth = window.localStorage.getItem(MONTH_STORAGE_KEY);
     const savedCoins = Number(window.localStorage.getItem(COINS_STORAGE_KEY));
+    const savedLastCoinChange = window.localStorage.getItem(LAST_COIN_CHANGE_STORAGE_KEY);
+
+    if (savedLastCoinChange && Number.isFinite(Date.parse(savedLastCoinChange))) {
+      setLastCoinChange(savedLastCoinChange);
+    }
 
     if (savedMonth !== currentMonth) {
       window.localStorage.setItem(MONTH_STORAGE_KEY, currentMonth);
@@ -112,7 +125,10 @@ export default function Home() {
 
     window.localStorage.setItem(COINS_STORAGE_KEY, String(coins));
     window.localStorage.setItem(MONTH_STORAGE_KEY, getCurrentMonthKey());
-  }, [coins, storageReady]);
+    if (lastCoinChange) {
+      window.localStorage.setItem(LAST_COIN_CHANGE_STORAGE_KEY, lastCoinChange);
+    }
+  }, [coins, lastCoinChange, storageReady]);
 
   const progress = Math.min(coins / MAX_COINS, 1);
   const remaining = MAX_COINS - coins;
@@ -123,13 +139,15 @@ export default function Home() {
   const markerPosition = `calc(${progress * 100}% ${markerOffset >= 0 ? "+" : "-"} ${Math.abs(markerOffset)}px)`;
 
   function addCoin() {
-    if (coins >= MAX_COINS) return;
+    if (!storageReady || coins >= MAX_COINS) return;
     setCoins((current) => Math.min(MAX_COINS, current + 1));
+    setLastCoinChange(new Date().toISOString());
   }
 
   function removeCoin() {
-    if (coins <= 0) return;
+    if (!storageReady || coins <= 0) return;
     setCoins((current) => Math.max(0, current - 1));
+    setLastCoinChange(new Date().toISOString());
   }
 
   return (
@@ -191,6 +209,16 @@ export default function Home() {
               <span>{coins >= MAX_COINS ? "Hết lượt nhận" : "+1 lượt nhận"}</span>
             </button>
           </section>
+        </div>
+
+        <div className="remaining-pill last-received-pill" aria-live="polite">
+          {lastCoinChange ? (
+            <span>
+              Lần nhận xu cuối lúc <time dateTime={lastCoinChange}>{formatLastCoinChange(lastCoinChange)}</time>
+            </span>
+          ) : (
+            "Chưa nhận xu"
+          )}
         </div>
       </section>
     </main>

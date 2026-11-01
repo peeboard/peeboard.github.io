@@ -99,20 +99,20 @@ button {
 .brand-mark {
   align-items: center;
   display: flex;
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  letter-spacing: 0;
+  line-height: 24px;
 }
 
 .brand-mark img {
   display: block;
-  flex: 0 0 14px;
-  height: 14px;
-  margin: 0 0.5px;
+  flex: 0 0 16px;
+  height: 16px;
+  /* Keep the small SVG on the layout grid instead of resampling a fractional transform. */
+  margin: 2px 1px 0;
   object-fit: contain;
-  transform: translateY(1.75px);
-  width: 14px;
+  width: 16px;
 }
 
 .hero-copy {
@@ -210,6 +210,14 @@ button {
   text-align: center;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.last-received-pill {
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  font-variant-numeric: tabular-nums;
+  margin-top: 0;
+  max-width: calc(100% - 44px);
+  position: absolute;
 }
 
 .progress-meter {
