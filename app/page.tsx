@@ -29,8 +29,15 @@ function getMonthLabel(monthOffset = 0) {
 
 function formatLastCoinChange(timestamp: string) {
   const date = new Date(timestamp);
+  const now = new Date();
   const pad = (value: number) => String(value).padStart(2, "0");
-  return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  const time = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  const isToday = date.toDateString() === now.toDateString();
+  const dayLabel = isToday
+    ? "hôm nay"
+    : `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`;
+
+  return `${time} - ${dayLabel}`;
 }
 
 function AnimatedDigit({ value }: { value: string }) {
@@ -175,7 +182,7 @@ export default function Home() {
             <span className="remaining-pill">
               {remaining === 0
                 ? `Reset lượt mới 00:00 01/${nextMonthLabel}`
-                : `Còn ${remaining} lượt nhận xu livestream`}
+                : `Còn ${remaining} lượt nhận xu livestream hoặc túi quà`}
             </span>
           </div>
 
@@ -217,7 +224,7 @@ export default function Home() {
         {lastCoinChange && coins < MAX_COINS && (
           <div className="remaining-pill last-received-pill" aria-live="polite">
             <span>
-              Lần nhận xu cuối lúc <time dateTime={lastCoinChange}>{formatLastCoinChange(lastCoinChange)}</time>
+              Lần cuối nhận xu lúc <time dateTime={lastCoinChange}>{formatLastCoinChange(lastCoinChange)}</time>
             </span>
           </div>
         )}
