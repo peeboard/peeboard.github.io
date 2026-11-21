@@ -31,7 +31,7 @@ function formatLastCoinChange(timestamp: string) {
   const date = new Date(timestamp);
   const now = new Date();
   const pad = (value: number) => String(value).padStart(2, "0");
-  const time = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
+  const time = `${pad(date.getHours())}:${pad(date.getMinutes())}`;
   const isToday = date.toDateString() === now.toDateString();
   const dayLabel = isToday
     ? "hôm nay"
