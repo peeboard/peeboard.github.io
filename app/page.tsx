@@ -37,7 +37,7 @@ function formatLastCoinChange(timestamp: string) {
     ? "hôm nay"
     : `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()}`;
 
-  return `${time} - ${dayLabel}`;
+  return `${time} ${dayLabel}`;
 }
 
 function AnimatedDigit({ value }: { value: string }) {
@@ -182,7 +182,7 @@ export default function Home() {
             <span className="remaining-pill">
               {remaining === 0
                 ? `Reset lượt mới 00:00 01/${nextMonthLabel}`
-                : `Còn ${remaining} lượt nhận xu livestream hoặc túi quà`}
+                : `Còn ${remaining} lượt nhận xu livestream hoặc mở túi quà`}
             </span>
           </div>
 
