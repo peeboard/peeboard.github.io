@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const MAX_COINS = 180;
+const MAX_COINS = 200;
 const COINS_STORAGE_KEY = "peeboard-coins";
 const MONTH_STORAGE_KEY = "peeboard-month";
 const LAST_COIN_CHANGE_STORAGE_KEY = "peeboard-last-coin-change";
